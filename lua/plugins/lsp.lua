@@ -13,6 +13,8 @@ return {
         "typescript-language-server",
         "css-lsp",
         "gopls", -- Add gopls here
+        "rust-analyzer", --rust lsp
+        "clangd", --c/c++ lsp
       })
     end,
   },
@@ -67,6 +69,7 @@ return {
           },
         },
         html = {},
+        clangd = {},
         yamlls = {
           settings = {
             yaml = {
@@ -151,6 +154,20 @@ return {
             },
           },
         },
+
+        --rust
+        rust_analyzer = {
+          cmd = { "rust-analyzer" },
+          filetypes = { "rust" },
+          root_dir = require("lspconfig.util").root_pattern("Cargo.toml", "rust-project.json", ".git"),
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = { allFeatures = true },
+              checkOnSave = { command = "clippy" },
+            },
+          },
+        },
+
         setup = {},
       },
     },
