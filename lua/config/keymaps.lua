@@ -59,7 +59,22 @@ keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "C-w>+")
 keymap.set("n", "<C-w><down>", "C-w>-")
 
---Diagnostic
-keymap.set("n", "<C-j>", function()
-  vim.diagnostic.goto_next()
+keymap.set("n", "<leader>z", function()
+  vim.diagnostic.open_float(nil, {
+    scope = "cursor", -- show here
+    border = "rounded", -- rounded borders
+    source = "always", -- show from which lsp this is
+    max_width = 150, --  window width restriction
+  })
+end, opts)
+
+-- go to the next diagnostic
+keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+
+--  go to prev diagnoctic
+keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+
+-- quickfix window
+keymap.set("n", "<leader>q", function()
+  vim.diagnostic.setloclist({ open = true })
 end, opts)

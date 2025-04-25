@@ -2,6 +2,11 @@ return {
   -- messages, cmdline and the popupmenu
   {
     "folke/noice.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-file-browser.nvim", -- ja izmanto file_browser
+      "jvgrootveld/telescope-zoxide", -- ja izmanto zoxide
+    },
     opts = function(_, opts)
       table.insert(opts.routes, {
         filter = {
