@@ -1,4 +1,4 @@
--- lua/wlr1/telescope.lua
+-- lua/wlr4/telescope.lua
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
@@ -22,17 +22,13 @@ telescope.setup({
     },
   },
   extensions = {
-    -- ja izmanto file_browser vai zoxide, piereģistrē šeit
     file_browser = {},
     zoxide = {},
   },
 })
 
--- ja izmanto Telescope extensions, piemēram:
---   require("telescope").load_extension("file_browser")
---   require("telescope").load_extension("zoxide")
+telescope.load_extension("zoxide")
 
--- globālās taustiņu saīsnes:
 vim.keymap.set("n", "<leader>jk", function()
   builtin.find_files({
     find_command = { "rg", "--files", "--hidden", "-g", "!.git" },

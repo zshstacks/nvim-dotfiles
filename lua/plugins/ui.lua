@@ -4,8 +4,8 @@ return {
     "folke/noice.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-file-browser.nvim", -- ja izmanto file_browser
-      "jvgrootveld/telescope-zoxide", -- ja izmanto zoxide
+      "nvim-telescope/telescope-file-browser.nvim",
+      "jvgrootveld/telescope-zoxide",
     },
     opts = function(_, opts)
       table.insert(opts.routes, {
