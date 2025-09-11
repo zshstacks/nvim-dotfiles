@@ -27,6 +27,7 @@ local opts = { noremap = true, silent = true }
 -- telescope file explorer (<leader>fb)
 -- find files (<leader>jk)
 --  open yazi in current file(<leader>x) q to quit yazi
+--  new tab(<leader>Tab-Tab)
 
 --highlight and delete all
 keymap.set("n", "da", "ggVGd", { desc = "Highlight and delete all" })
@@ -57,6 +58,21 @@ keymap.set("n", "tf", function()
     vim.cmd("tabedit " .. file)
   end
 end, opts)
+
+keymap.set("n", "<leader><leader>", function()
+  local fname = vim.fn.expand("%:p")
+  if fname == "" then
+    -- ja nav atvērta neviens fails, atver jaunu tukšu tab
+    vim.cmd("tabnew")
+    return
+  end
+  -- atver failu jaunā tab un iestata tab-local cwd uz tā direktoriju
+  vim.cmd("tab split " .. vim.fn.fnameescape(fname))
+  local dir = vim.fn.fnamemodify(fname, ":h")
+  vim.cmd("tcd " .. vim.fn.fnameescape(dir))
+end, opts)
+
+keymap.set("n", "<leader><tab><tab>", ":tab split %<CR>:tcd %:p:h<CR>", opts)
 
 --Split window (ss split bottom, sv split horizont, sx close window, se correct all wind size )
 keymap.set("n", "ss", ":split<Return>", opts)
