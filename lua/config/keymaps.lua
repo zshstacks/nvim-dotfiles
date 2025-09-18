@@ -72,7 +72,7 @@ keymap.set("n", "<leader><leader>", function()
   vim.cmd("tcd " .. vim.fn.fnameescape(dir))
 end, opts)
 
-keymap.set("n", "<leader><tab><tab>", ":tab split %<CR>:tcd %:p:h<CR>", opts)
+--keymap.set("n", "<leader><tab><tab>", ":tab split %<CR>:tcd %:p:h<CR>", opts)
 
 --Split window (ss split bottom, sv split horizont, sx close window, se correct all wind size )
 keymap.set("n", "ss", ":split<Return>", opts)
